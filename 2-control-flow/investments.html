@@ -58,9 +58,18 @@
         console.log("---------------------")
         console.log("PART 1...")
 
+        var initialBalance = 150000
+        var balance = initialBalance
+        var years = 0
 
+        while(balance < 1000000){
+            balance = balance * 1.08 // ACCUMULATE THE BALANCE
+            years = years + 1
+        }
 
-
+        console.log("INITIAL BALANCE:", formatUSD(initialBalance))
+        console.log("NUMBER OF YEARS:", years)
+        console.log("ENDING BALANCE:", formatUSD(balance))
 
 
         console.log("---------------------")
