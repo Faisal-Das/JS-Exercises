@@ -90,6 +90,7 @@
 
         d3.csv(requestUrl).then(function(data) {
             console.log("DATA:", data)
+            console.log("All Markets:", data.markets);
 
             console.log("---------------------")
             console.log("PART 1...")
@@ -115,7 +116,21 @@
             document.getElementById("display-latest").textContent = `${latest.timestamp} (${formatUSD(latestClose)})`
             document.getElementById("display-pct-change").textContent = formatPct(pctChange)
 
+            var equityMarkets = data.markets.filter(m => m.type === "equity")
+            console.log("Equity Market Regions:", equityMarkets.map(m => m.region));
 
+            var market = equityMarkets.find(m => m.region === "US")
+
+            if (!market) {
+                console.warn("US Market not found!");
+                displayRegion.innerText = "N/A";
+                displayType.innerText = "N/A";
+                displayExchanges.innerText = "N/A";
+                displayOpen.innerText = "N/A";
+                displayClose.innerText = "N/A";
+                displayStatus.innerText = "N/A";
+                return;
+            }
 
             }).catch(function(error) {
                 console.error("ERROR:", error)
