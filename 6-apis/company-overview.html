@@ -98,6 +98,16 @@
             d3.json(requestUrl).then(function(data) {
                 console.log("RESPONSE:", data)
 
+                if (!data || !data.Name) {
+                    alert("Could not load company data. Please check the symbol or try again later.")
+                    document.getElementById("display-name").innerText = "N/A"
+                    document.getElementById("display-description").innerText = "N/A"
+                    const displayLink = document.getElementById("display-link")
+                    displayLink.innerText = "N/A"
+                    displayLink.href = "#"
+                    return;
+                }
+
                 console.log("---------------------")
                 console.log("PART 1...")
 
