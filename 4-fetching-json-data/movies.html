@@ -64,8 +64,8 @@
         <option value="N/A">Select a Movie</option>
     </select>
     <div id="display-movie">
-        <p>Title: <span id="display-title">TODO</span></p>
-        <p>Year: <span id="display-year">TODO</span></p>
+        <p>Title: <span id="display-title">N/A</span></p>
+        <p>Year: <span id="display-year">N/A</span></p>
         <p>Rating: <span id="display-rating">X</span> / 10</p>
         <p>Thumbnail Image:</p>
         <div id="image-container"></div>
@@ -135,9 +135,9 @@
                         img.alt = `Thumbnail of ${selectedMovie.Title}`
                         imageContainer.appendChild(img)
                    } else {
-                        displayTitle.textContent = "TODO"
-                        displayYear.textContent = "TODO"
-                        displayRating.textContent = "TODO"
+                        displayTitle.textContent = "N/A"
+                        displayYear.textContent = "N/A"
+                        displayRating.textContent = "N/A"
                         imageContainer.innerHTML = ""
                    }
                 }
