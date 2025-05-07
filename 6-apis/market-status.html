@@ -57,12 +57,12 @@
     </select-->
 
     <div id="display-market-info">
-        <p>Region: <span id="display-region">TODO</span></p>
-        <p>Market Type: <span id="display-type">TODO</span></p>
-        <p>Primary Exchanges: <span id="display-exchanges">TODO</span></p>
-        <p>Local Open: <span id="display-open">TODO</span></p>
-        <p>Local Close: <span id="display-close">TODO</span></p>
-        <p>Current Status: <span id="display-status">TODO</span></p>
+        <p>Region: <span id="display-region">N/A</span></p>
+        <p>Market Type: <span id="display-type">N/A</span></p>
+        <p>Primary Exchanges: <span id="display-exchanges">N/A</span></p>
+        <p>Local Open: <span id="display-open">N/A</span></p>
+        <p>Local Close: <span id="display-close">N/A</span></p>
+        <p>Current Status: <span id="display-status">N/A</span></p>
     </div>
 
 
@@ -120,6 +120,23 @@
 
             console.log("---------------------")
             console.log("PART 2...")
+
+            const displayRegion = document.getElementById("display-region");
+            const displayType = document.getElementById("display-type");
+            const displayExchanges = document.getElementById("display-exchanges");
+            const displayOpen = document.getElementById("display-open");
+            const displayClose = document.getElementById("display-close");
+            const displayStatus = document.getElementById("display-status");
+
+            if (!market) {
+                displayRegion.innerText = "N/A";
+                displayType.innerText = "N/A";
+                displayExchanges.innerText = "N/A";
+                displayOpen.innerText = "N/A";
+                displayClose.innerText = "N/A";
+                displayStatus.innerText = "N/A";
+                return;
+            }
 
             displayRegion.innerText = market.region
             displayType.innerText = market.market_type
