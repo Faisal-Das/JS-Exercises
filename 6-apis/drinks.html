@@ -64,7 +64,7 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script type="text/javascript">
 
-        var requestUrl = "TODO"
+        var requestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic"
 
         d3.json(requestUrl).then(function(data){
             console.log("DATA:", data)
@@ -77,17 +77,6 @@
 
             data.drinks.forEach(drink => {
                 console.log(drink.idDrink, drink.strDrink)
-            })
-
-            console.log("--------------------------")
-            var drinkId = 13032
-            console.log("DRINK ID:", drinkId)
-            var requestUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`
-            d3.json(requestUrl).then(function(drinkData){
-            console.log("DATA:", drinkData)
-            var drink = drinkData.drinks[0]
-            console.log(drink.idDrink, drink.strDrink, drink.strGlass)
-            console.log(drink.strInstructions)
             })
 
             console.log("---------------------")
