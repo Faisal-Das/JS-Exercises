@@ -90,7 +90,8 @@
 
         // FUNCTION DEFINITION
         function lookupCompany() {
-            var symbol = inputSymbol.value
+            const inputSymbol = document.getElementById("input-symbol");
+            const symbol = inputSymbol.value;
             console.log("SYMBOL:", symbol)
 
             var requestUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${apiKey}`
@@ -111,7 +112,7 @@
 
                 const displayName = document.getElementById("display-name")
                 const displayDesc = document.getElementById("display-description")
-                const displayLink = document.getElementById("display-website")
+                const displayLink = document.getElementById("display-link")
 
                 displayName.innerText = data.Name
                 displayDesc.innerText = data.Description
@@ -126,9 +127,9 @@
 
         // FUNCTION INVOCATIONS
         // invoke function when the page loads:
-        //lookupCompany()
+        lookupCompany();
         // invoke function when button is clicked:
-        //lookupButton.addEventListener("click", lookupCompany, false)
+        document.getElementById("lookup").addEventListener("click", lookupCompany);
 
     </script>
 </body>
