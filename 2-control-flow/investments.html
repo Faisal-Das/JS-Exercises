@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +43,14 @@
         The interface should include a button, that when clicked should perform the simulation and
         and display the resulting number of years and actual ending balance on the page.
     </p>
+    <p>
+        <label>Initial Balance: <input id="input-initial" type="number" value="150000"></label><br>
+        <label>Target Balance: <input id="input-target" type="number" value="1000000"></label><br>
+        <label>Mean Return (e.g., 0.08): <input id="input-mean" type="number" step="0.01" value="0.08"></label><br>
+        <label>Standard Deviation (e.g., 0.15): <input id="input-stdev" type="number" step="0.01" value="0.15"></label><br>
+        <button id="simulate-button">Run Simulation</button>
+    </p>
+    <p id="output-result">Results will appear here.</p>
 
 
 
@@ -101,26 +107,57 @@
         var targetBalance = 1000000
         var mean = 0.08
         var stdev = 0.15
-        
+
         var balance = initialBalance
         var years = 0
         var rateGenerator = d3.randomNormal(mean, stdev)
-        
+        var returnsLog = []
+
         while(balance < targetBalance){
             var rate = rateGenerator()
+            returnsLog.push(rate)
             balance = balance * (1 + rate)
             years = years + 1
-}
+        }
+
         console.log("INITIAL BALANCE:", formatUSD(initialBalance))
         console.log("TARGET BALANCE:", formatUSD(targetBalance))
         console.log("MEAN RETURN:", (mean * 100).toFixed(2) + "%")
         console.log("STD DEV:", (stdev * 100).toFixed(2) + "%")
         console.log("NUMBER OF YEARS:", years)
-        console.log("ENDING BALANCE:", formatUSD(balance))          
+        console.log("ENDING BALANCE:", formatUSD(balance))
+        console.log("RETURNS:", returnsLog.map(r => (r * 100).toFixed(2) + "%").join(", "))
 
- 
 
+    document.getElementById("simulate-button").addEventListener("click", function() {
+        var initialBalance = parseFloat(document.getElementById("input-initial").value)
+        var targetBalance = parseFloat(document.getElementById("input-target").value)
+        var mean = parseFloat(document.getElementById("input-mean").value)
+        var stdev = parseFloat(document.getElementById("input-stdev").value)
 
+        var balance = initialBalance
+        var years = 0
+        var rateGenerator = d3.randomNormal(mean, stdev)
+        var returnsLog = []
+
+        while (balance < targetBalance) {
+            var rate = rateGenerator()
+            returnsLog.push(rate)
+            balance *= (1 + rate)
+            years++
+        }
+
+        var resultText = `
+            INITIAL BALANCE: ${formatUSD(initialBalance)}<br>
+            TARGET BALANCE: ${formatUSD(targetBalance)}<br>
+            MEAN RETURN: ${(mean * 100).toFixed(2)}%<br>
+            STD DEV: ${(stdev * 100).toFixed(2)}%<br>
+            NUMBER OF YEARS: ${years}<br>
+            ENDING BALANCE: ${formatUSD(balance)}<br>
+            RETURNS: ${returnsLog.map(r => (r * 100).toFixed(2) + "%").join(", ")}
+        `
+        document.getElementById("output-result").innerHTML = resultText
+    })
     </script>
 </body>
 </html>
