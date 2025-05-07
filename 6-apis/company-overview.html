@@ -109,12 +109,14 @@
                 console.log("---------------------")
                 console.log("PART 2...")
 
+                const displayName = document.getElementById("display-name")
+                const displayDesc = document.getElementById("display-description")
+                const displayLink = document.getElementById("display-website")
+
                 displayName.innerText = data.Name
                 displayDesc.innerText = data.Description
-
-                displayLink.innerText = data.OfficialSite
-                displayLink.href = data.OfficialSite
-
+                displayLink.innerText = data.Website
+                displayLink.href = data.Website
 
 
             }).catch(function(error) {
